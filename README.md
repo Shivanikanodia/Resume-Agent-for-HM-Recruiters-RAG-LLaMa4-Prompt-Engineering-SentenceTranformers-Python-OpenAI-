@@ -52,10 +52,10 @@ This project aims to **streamline recruitment** by automatically creating **conc
      └─────────┬─────────────┘
                │
                ▼
-  ┌──────────────────────────┐
-  │ Sentence Transformers     │
-  │ (Chunking + Embedding)    │
-  └──────────┬────────────────┘
+   ┌──────────────────────────┐
+   │ Sentence Transformers     │
+   │ (Chunking + Embedding)    │
+   └──────────┬────────────────┘
              │
              ▼
   ┌──────────────────────────┐
