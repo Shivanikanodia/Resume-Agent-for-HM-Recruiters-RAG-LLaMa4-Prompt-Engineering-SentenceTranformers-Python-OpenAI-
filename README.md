@@ -2,11 +2,11 @@
 
 An end-to-end AI pipeline built on Databricks that leverages Retrieval-Augmented Generation (RAG) and Large Language Models (LLMs) to automatically generate professional resume summaries.
 
-#### 📌 Problem Statement:
+#### Problem Statement:
 
 Recruiters and hiring managers often have to manually review hundreds of resumes — a time-consuming and error-prone process. This project aims to streamline recruitment by automatically creating concise, professional summaries from resumes, ensuring only the most relevant and important content is highlighted.
 
-#### 🎯 Project Goals:
+#### Project Goals:
 
 Reduce manual effort in resume screening.
 
@@ -14,7 +14,7 @@ Generate clear, concise, and relevant summaries.
 
 Retrieve only the most important sections from resumes using semantic similarity before LLM processing.
 
-#### 🛠️ Technologies Used
+#### Technologies Used
 
 - Python – Core language for building and orchestrating the pipeline.
 
@@ -30,9 +30,9 @@ Retrieve only the most important sections from resumes using semantic similarity
 
 - Databricks Notebooks – For pipeline execution and orchestration.
 
-#### ⚙️ How It Works
+#### How It Works
 
-1. Data Loading – Resumes are read from Unity Catalog Volumes using Apache Spark.
+1. Data Loading – Resumes are read from Unity Catalog Volumes using Apache Spark (**You can choose to either upload from your local device changing file path**)
 
 2. Chunking & Embedding – Each resume is split into chunks, embedded using Sentence Transformers.
 
@@ -47,19 +47,19 @@ Retrieve only the most important sections from resumes using semantic similarity
 #### 📂 Project Structure
 Resume Summarizer Agent (3).py   # Main Databricks notebook script
 
-#### 🚀 Installation
+#### Installation:
 
 Make sure you are running inside a Databricks Notebook with the following installed:
 
 %pip install sentence-transformers
 
-▶️ Usage
+#### Usage:
 
 Upload your resumes to a Unity Catalog Volume.
 
 Open the notebook in Databricks.
 
-Configure:
+#### Configure:
 
 LLM endpoint URL & token
 
@@ -67,18 +67,17 @@ Resume data path in Unity Catalog
 
 Run all cells — summaries will be generated and stored.
 
-🔑 Example Output
+#### Example Output: 
 
 Input:
 
 [Resume text...]
 
-
 Output:
 
 "Results-driven data analyst with 5 years of experience in..."
 
-📈 Benefits
+####  Benefits
 
 Cuts resume review time drastically.
 
