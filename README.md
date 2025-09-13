@@ -24,13 +24,7 @@ This project aims to **streamline recruitment** by automatically creating **conc
 4. **Prompt Construction** – Retrieved content is passed into a carefully engineered LLM prompt.
 5. **Summary Generation** – LLaMA 4 (Databricks-hosted) generates the final professional summary.
 6. **Output Storage** – Summaries are saved back to Databricks for recruiter access.
-
----
-
-### 🗂 Architecture Diagram (ASCII)
-
-<img width="276" height="653" alt="resume_summarizer_architecture" src="https://github.com/user-attachments/assets/3a7f4552-4a37-4a29-8cc2-eb9d0b23353e" />
-       
+ 
 ---
 
 #### Project Structure:
