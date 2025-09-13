@@ -4,31 +4,20 @@ An end-to-end AI pipeline built on **Databricks** that leverages **Retrieval-Aug
 
 ---
 
-##  Problem Statement
+###  Problem Statement
 Recruiters and hiring managers often have to manually review hundreds of resumes — a time-consuming and error-prone process.  
 This project aims to **streamline recruitment** by automatically creating **concise, professional summaries** from resumes, ensuring only the **most relevant and important content** is highlighted.
 
 ---
 
-##  Project Goals
+###  Project Goals
 - Reduce manual effort in resume screening.
 - Generate **clear, concise, and relevant** summaries.
 - Retrieve **only the most important sections** from resumes using semantic similarity before LLM processing.
 
 ---
 
-##  Technologies Used
-- **Python** – Core language for building and orchestrating the pipeline.
-- **Sentence Transformers** (`all-MiniLM-L6-v2`) – For semantic search and intelligent chunk retrieval.
-- **Databricks LLM Endpoint** (LLaMA 4) – Hosted Large Language Model for high-quality summarization.
-- **Apache Spark + Unity Catalog** – Distributed processing and secure access to resume data.
-- **Prompt Engineering** – Optimized instructions for accurate and context-aware model output.
-- **REST API Calls** – Integration with Databricks LLM endpoints.
-- **Databricks Notebooks** – For pipeline execution and orchestration.
-
----
-
-## ⚙️ How It Works
+### How It Works
 1. **Data Loading** – Resumes are read from Unity Catalog Volumes using Apache Spark.
 2. **Chunking & Embedding** – Each resume is split into chunks, embedded using Sentence Transformers.
 3. **Semantic Retrieval** – Relevant chunks are retrieved based on query similarity.
@@ -38,19 +27,17 @@ This project aims to **streamline recruitment** by automatically creating **conc
 
 ---
 
-## 🗂 Architecture Diagram (ASCII)
+### 🗂 Architecture Diagram (ASCII)
 
 <img width="276" height="653" alt="resume_summarizer_architecture" src="https://github.com/user-attachments/assets/3a7f4552-4a37-4a29-8cc2-eb9d0b23353e" />
-     
-    
+       
 ---
 
-## 📂 Project Structure
-
+#### Project Structure
 
 ---
 
-## 🚀 Installation
+### 🚀 Installation
 Make sure you are running inside a **Databricks Notebook** with the following installed:
 ```bash
 %pip install sentence-transformers
