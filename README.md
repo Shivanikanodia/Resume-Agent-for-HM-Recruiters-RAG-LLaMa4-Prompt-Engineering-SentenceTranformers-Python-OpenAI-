@@ -1,4 +1,4 @@
-# Resume Summarization AI Agent (RAG + LLM)
+### Resume Summarization AI Agent (RAG + LLM)
 
 An end-to-end AI pipeline built on **Databricks** that leverages **Retrieval-Augmented Generation (RAG)** and **Large Language Models (LLMs)** to automatically generate **professional resume summaries**.
 
@@ -33,15 +33,14 @@ This project aims to **streamline recruitment** by automatically creating **conc
        
 ---
 
-#### Project Structure
+#### Project Structure:
 
 ---
 
-### 🚀 Installation
+#### Installation:
 Make sure you are running inside a **Databricks Notebook** with the following installed:
 ```bash
 %pip install sentence-transformers
-
 
 
 #### Usage:
@@ -54,17 +53,9 @@ Open the notebook in Databricks.
 
 LLM endpoint URL & token
 
-Resume data path in Unity Catalog
+Resume data path from your database or connect with ATS to retrive resumes. 
 
 Run all cells — summaries will be generated and stored.
-
-#### Benefits:
-
-Cuts resume review time drastically.
-
-Improves accuracy & relevance of summaries.
-
-Can be scaled to thousands of resumes.
 
 
 📜 License
