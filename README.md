@@ -29,28 +29,44 @@ This project aims to **streamline recruitment** by automatically creating **conc
 
 #### Project Structure:
 
+**1.Reading and Chunking Resume:**
+LLMs perform better with concise inputs. We are chunking resumes into small parts (~800 chars) to be later searched semantically using read_chunk_resume function.
+
+**2.Generating Embeddings:**
+Embeddings converts chunks into high-dimensional vectors so we can find semantically similar text based on a query.
+A pretrained transformer model is loaded using SentenceTransformer(all-MiniLM-L6-v2). It is an efficient choice that generates 384-dimensional embeddings. The model.encode() function takes a list of text chunks.
+
+**3.Semantic Retrieval:**
+Finds the most relevant text chunks from a list based on semantic similarity to a given query using cosine similarity, saving tokens and improving accuracy.
+
+**4.Calling Datbricks LLAMA-4 Endpoint API to generate outputs:**
+
+<img width="770" height="624" alt="Screenshot 2025-10-24 at 12 17 33" src="https://github.com/user-attachments/assets/82a6dd28-e614-428a-95ce-779080977638" />
+
+This script interacts with a Databricks-hosted large language model (LLM) by sending a prompt and receiving a summarized response. The API URL is constructed dynamically using the model name to ensure the request reaches the correct endpoint.
+
+The max_tokens parameter is used to limit the length of the model's response, ensuring it remains concise and controlled. Finally, the requests.post() function is used to make the HTTP request, sending the payload and headers to the LLM endpoint and retrieving the generated output.
+
+**5.Prompt Engineering and Fine Tuning**
+
+<img width="784" height="637" alt="Screenshot 2025-10-24 at 12 18 52" src="https://github.com/user-attachments/assets/da7cca00-c37a-46e3-8dfb-39923c0558ec" />
+
+This function is designed to build a well-structured prompt that will be sent to a Large Language Model (LLM) for resume summarization.
+
+It takes two main inputs: Context, which consists of relevant resume chunks retrieved through semantic search, and query, which is the specific instruction or question for the model to answer (e.g., "Summarize this candidate’s experience").
+
+The goal is to format these inputs into a cohesive and clear prompt that guides the LLM to produce accurate, concise, and relevant summaries. The structured format helps ensure the model focuses only on the important information from the resume while following the desired task.
+
+**Model Output**::
+
+<img width="793" height="274" alt="Screenshot 2025-10-24 at 12 19 23" src="https://github.com/user-attachments/assets/368d9023-024c-4c05-83d8-c928ebca5138" />
+
 ---
 
-#### Installation:
-Make sure you are running inside a **Databricks Notebook** with the following installed:
-```bash
-%pip install sentence-transformers
+## Installation and Usage:
 
 
-#### Usage:
-
-Upload your resumes to a Unity Catalog Volume.
-
-Open the notebook in Databricks.
-
-#### Configure:
-
-LLM endpoint URL & token
-
-Resume data path from your database or connect with ATS to retrive resumes. 
-
-Run all cells — summaries will be generated and stored.
-
+---
 
 📜 License
 
