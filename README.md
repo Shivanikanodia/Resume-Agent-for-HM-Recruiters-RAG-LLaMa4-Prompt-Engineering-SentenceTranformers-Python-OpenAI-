@@ -63,11 +63,6 @@ The goal is to format these inputs into a cohesive and clear prompt that guides 
 
 ---
 
-## Installation and Usage:
-
-
----
-
 📜 License
 
 This project is intended for educational and internal enterprise use.
