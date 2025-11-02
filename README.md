@@ -6,24 +6,30 @@ An end-to-end AI pipeline built on **Databricks** that leverages **Retrieval-Aug
 
 ###  Problem Statement
 Recruiters and hiring managers often have to manually review hundreds of resumes — a time-consuming and error-prone process.  
-This project aims to **streamline recruitment** by automatically creating **concise, professional summaries** from resumes, ensuring only the **most relevant and important content** is highlighted.
+This project aims to **streamline recruitment** by extracting information from resumes matters most to Hiring Managers and Recruiters.  
 
 ---
 
 ###  Project Goals
-- Reduce manual effort in resume screening.
-- Generate **clear, concise, and relevant** summaries.
-- Retrieve **only the most important sections** from resumes using semantic similarity before LLM processing.
+Automates resume screening by retrieving key sections, using semantic similarity, Re-Ranking and generating clear, concise, and relevant summaries.
 
 ---
 
-### How It Works
-1. **Data Loading** – Resumes are read from Unity Catalog Volumes using Apache Spark.
-2. **Chunking & Embedding** – Each resume is split into chunks, embedded using Sentence Transformers.
-3. **Semantic Retrieval** – Relevant chunks are retrieved based on query similarity.
-4. **Prompt Construction** – Retrieved content is passed into a carefully engineered LLM prompt.
-5. **Summary Generation** – LLaMA 4 (Databricks-hosted) generates the final professional summary.
-6. **Output Storage** – Summaries are saved back to Databricks for recruiter access.
+### How It Works:
+
+1. Data Loading – Read resumes from Unity Catalog Volumes.
+
+2. Chunking & Embedding – Split each resume and embed with all-MiniLM-L6-v2 (384-D vectors).
+
+3. Semantic Retrieval (Bi-encoder, recall-focused) – Use ANN/cosine search to pull the most likely relevant chunks.
+
+4. Re-ranking (Cross-encoder, precision-focused) – Score query–chunk pairs and sort to keep the best matches.
+
+5. Prompt Construction – Insert top chunks with instructions/formatting/constraints (and cite sources if needed).
+
+6. Summary/Answer Generation – Use the LLM (e.g., Databricks-hosted Llama) to produce the final response for hiring managers.
+
+7. Evaluation & Observability – Track latency, error rate, and relevance/quality, plus token/cost.
  
 ---
 
@@ -38,6 +44,11 @@ A pretrained transformer model is loaded using SentenceTransformer(all-MiniLM-L6
 
 **3.Semantic Retrieval:**
 Finds the most relevant text chunks from a list based on semantic similarity to a given query using cosine similarity, saving tokens and improving accuracy.
+
+**Chunks Re-ranking**
+
+<img width="2096" height="652" alt="image" src="https://github.com/user-attachments/assets/5e96be2b-e314-4449-8424-86367c19d1ad" />
+
 
 **4.Calling Datbricks LLAMA-4 Endpoint API to generate outputs:**
 
@@ -57,12 +68,21 @@ It takes two main inputs: Context, which consists of relevant resume chunks retr
 
 The goal is to format these inputs into a cohesive and clear prompt that guides the LLM to produce accurate, concise, and relevant summaries. The structured format helps ensure the model focuses only on the important information from the resume while following the desired task.
 
+---
+
 **Model Output**::
 
-<img width="793" height="274" alt="Screenshot 2025-10-24 at 12 19 23" src="https://github.com/user-attachments/assets/368d9023-024c-4c05-83d8-c928ebca5138" />
+<img width="2096" height="578" alt="image" src="https://github.com/user-attachments/assets/be61dc00-b4c7-4bd2-9d77-90ca7301cb7d" />
+
+
+--- 
+
+**Evaluation Metrics:**
+
+<img width="758" height="166" alt="image" src="https://github.com/user-attachments/assets/ef695a10-79b8-42bc-be70-f4e40634383d" />
 
 ---
 
-📜 License
+📜 **License**
 
 This project is intended for educational and internal enterprise use.
