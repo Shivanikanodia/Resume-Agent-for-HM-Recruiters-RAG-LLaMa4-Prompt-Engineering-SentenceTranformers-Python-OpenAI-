@@ -58,8 +58,6 @@ st.title("Resume Hire-ability Scorer (via Groq Llama 8B)")
 uploaded_file = st.file_uploader("Upload your resume (PDF)", type="pdf")
 job_description = st.text_area("Paste the Job Description here")
 
-GROQ_API_KEY = "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"
-
 if uploaded_file is not None and job_description.strip():
     if not GROQ_API_KEY:
         st.error("GROQ_API_KEY not found in Streamlit Secrets or Environment. Please set it to use Groq API.")
