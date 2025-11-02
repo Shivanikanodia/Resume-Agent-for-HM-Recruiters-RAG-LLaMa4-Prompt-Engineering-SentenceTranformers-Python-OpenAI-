@@ -79,7 +79,15 @@ The goal is to format these inputs into a cohesive and clear prompt that guides 
 
 **Evaluation Metrics:**
 
+
 <img width="758" height="166" alt="image" src="https://github.com/user-attachments/assets/ef695a10-79b8-42bc-be70-f4e40634383d" />
+
+--- 
+
+**Streamlite UI**
+
+<img width="930" height="602" alt="Screenshot 2025-11-02 at 11 20 31" src="https://github.com/user-attachments/assets/8d7cfd70-9b08-499f-8dfc-f6f2e01ae84b" />
+
 
 ---
 
