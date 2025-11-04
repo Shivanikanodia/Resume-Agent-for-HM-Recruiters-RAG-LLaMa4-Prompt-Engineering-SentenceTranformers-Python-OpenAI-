@@ -1,35 +1,35 @@
-### Resume Summarization AI Agent (RAG + LLM)
+### Resume Summarization AI Agent (RAG + LLM):
 
-An end-to-end AI pipeline built on **Databricks** that leverages **Retrieval-Augmented Generation (RAG)** and **Large Language Models (LLMs)** to automatically generate **professional resume summaries**.
-
----
-
-###  Problem Statement
-Recruiters and hiring managers often have to manually review hundreds of resumes — a time-consuming and error-prone process.  
-This project aims to **streamline recruitment** by extracting information from resumes matters most to Hiring Managers and Recruiters.  
+An end-to-end AI pipeline that leverages **Retrieval-Augmented Generation (RAG)**, **Sentence Transformers** and **Large Language Models (LLMs)** to generate **candidate resume summaries**.
 
 ---
 
-###  Project Goals
-Automates resume screening by retrieving key sections, using semantic similarity, Re-Ranking and generating clear, concise, and relevant summaries.
+###  Problem Statement:
+
+Recruiters and hiring managers often have to manually review hundreds of resumes, a time-consuming and error-prone process.  This project aims to **streamline recruitment** by extracting information from resumes matters most to Hiring Managers and Recruiters, reducing tedious repitive tasks.  
+
+---
+
+###  Project Goals:
+AI agent built for Hiring Managers and Recruiters from Different Business Verticals (Engineering, Global Functions, Professioal Services etc), which helps them to retrive candidates information and resumes from large numbers of applications received matching their prefence based on query asked, skills and team fitment. This reduces the time it takes for recruiters to manually read each resume.     
 
 ---
 
 ### How It Works:
 
-1. Data Loading – Read resumes from Unity Catalog Volumes.
+1. **Data Loading** – Read resumes saved in Unity Catalog delta tables Volumes.
 
-2. Chunking & Embedding – Split each resume and embed with all-MiniLM-L6-v2 (384-D vectors).
+2. **Chunking & Embedding** – Split each resume and embedded with all-MiniLM-L6-v2 (384-D vectors).
 
-3. Semantic Retrieval (Bi-encoder, recall-focused) – Use ANN/cosine search to pull the most likely relevant chunks.
+3. **Semantic Retrieval using Bi-encoder, recall-focused)** – Use cosine similarity to search and pull the most likely relevant chunks.
 
-4. Re-ranking (Cross-encoder, precision-focused) – Score query–chunk pairs and sort to keep the best matches.
+4. **Re-ranking (Cross-encoder, precision-focused)** – Score query–chunk pairs and sort to keep the best match. 
 
-5. Prompt Construction – Insert top chunks with instructions/formatting/constraints (and cite sources if needed).
+5. **Prompt Engineering** – Insert top chunks with instructions/Rules/constraints mentioned. 
 
-6. Summary/Answer Generation – Use the LLM (e.g., Databricks-hosted Llama) to produce the final response for hiring managers.
+6. **Summary/Answer Generation** – Use the LLM (Databricks-hosted Llama) to produce the final response for hiring managers.
 
-7. Evaluation & Observability – Track latency, error rate, and relevance/quality, plus token/cost.
+7. **Evaluation & Observability** – Track latency, error rate, and relevance/quality, plus token/cost.
  
 ---
 
@@ -40,15 +40,15 @@ LLMs perform better with concise inputs. We are chunking resumes into small part
 
 **2.Generating Embeddings:**
 Embeddings converts chunks into high-dimensional vectors so we can find semantically similar text based on a query.
-A pretrained transformer model is loaded using SentenceTransformer(all-MiniLM-L6-v2). It is an efficient choice that generates 384-dimensional embeddings. The model.encode() function takes a list of text chunks.
+A pretrained transformer model is loaded using SentenceTransformer(all-MiniLM-L6-v2). It is an efficient choice that generates 384-dimensional embeddings. 
+The model.encode() function takes a list of text chunks.
 
 **3.Semantic Retrieval:**
 Finds the most relevant text chunks from a list based on semantic similarity to a given query using cosine similarity, saving tokens and improving accuracy.
 
-**Chunks Re-ranking**
+**4. Chunks Re-ranking**
 
 <img width="2096" height="652" alt="image" src="https://github.com/user-attachments/assets/5e96be2b-e314-4449-8424-86367c19d1ad" />
-
 
 **4.Calling Datbricks LLAMA-4 Endpoint API to generate outputs:**
 
