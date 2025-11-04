@@ -1,73 +1,56 @@
 ### Resume Summarization AI Agent (RAG + LLM):
 
-An end-to-end AI pipeline that leverages **Retrieval-Augmented Generation (RAG)**, **Sentence Transformers** and **Large Language Models (LLMs)** to generate **candidate resume summaries**.
+An end-to-end pipeline that uses Retrieval-Augmented Generation (RAG), Sentence Transformers, Re-ranking and an LLM to generate concise, role-aware candidate resume summaries.
+
+### Problem
+
+Recruiters and hiring managers often review hundreds of resumes manually—slow, inconsistent, and error-prone. This agent extracts the information that actually matters to hiring teams and produces fast, consistent summaries.
+
+## Goals
+
+Serve Hiring Managers and Recruiters across functions (Engineering, Global Functions, Professional Services, etc.).
+Let users query large resume sets by skills, experience, and team fit.
+Reduce time-to-screen by surfacing the most relevant candidates and summaries.
 
 ---
 
-###  Problem Statement:
+### How It Works (Architecture)
 
-Recruiters and hiring managers often have to manually review hundreds of resumes, a time-consuming and error-prone process.  This project aims to **streamline recruitment** by extracting information from resumes matters most to Hiring Managers and Recruiters, reducing tedious repitive tasks.  
+1. **Data Loading:** Read resumes stored in Unity Catalog Volumes / Delta.
 
----
+2. **Chunking & Embeddings:** Split resumes into ~800-character chunks.
 
-###  Project Goals:
-AI agent built for Hiring Managers and Recruiters from Different Business Verticals (Engineering, Global Functions, Professioal Services etc), which helps them to retrive candidates information and resumes from large numbers of applications received matching their prefence based on query asked, skills and team fitment. This reduces the time it takes for recruiters to manually read each resume.     
+3. **Embed with all-MiniLM-L6-v2 (384-dim) via SentenceTransformer.**
 
----
+4. **Semantic Retrieval (Recall):** Cosine similarity over embeddings to fetch top-k relevant chunks (FAISS or equivalent index recommended).
 
-### How It Works:
+5. **Re-ranking (Precision):** Cross-encoder scores (query, chunk) pairs and reorders the retrieved set to keep the most relevant passages.
 
-1. **Data Loading** – Read resumes saved in Unity Catalog delta tables Volumes.
+6. **Prompt Construction:** Insert top chunks into a concise, instruction-driven prompt with rules/constraints (focus on role fit, impact, skills, recency).
 
-2. **Chunking & Embedding** – Split each resume and embedded with all-MiniLM-L6-v2 (384-D vectors).
+7. **LLM Generation:** Call Databricks-hosted Llama endpoint to produce the final summary/answer.
 
-3. **Semantic Retrieval using Bi-encoder, recall-focused)** – Use cosine similarity to search and pull the most likely relevant chunks.
-
-4. **Re-ranking (Cross-encoder, precision-focused)** – Score query–chunk pairs and sort to keep the best match. 
-
-5. **Prompt Engineering** – Insert top chunks with instructions/Rules/constraints mentioned. 
-
-6. **Summary/Answer Generation** – Use the LLM (Databricks-hosted Llama) to produce the final response for hiring managers.
-
-7. **Evaluation & Observability** – Track latency, error rate, and relevance/quality, plus token/cost.
+8. **Evaluation & Observability:** Track latency, error rate, retrieval quality, and token/cost.
  
 ---
 
 #### Project Structure:
 
-**1.Reading and Chunking Resume:**
-LLMs perform better with concise inputs. We are chunking resumes into small parts (~800 chars) to be later searched semantically using read_chunk_resume function.
+1. Read & Chunking: read_chunk_resume() splits text → list of chunks.
 
-**2.Generating Embeddings:**
-Embeddings converts chunks into high-dimensional vectors so we can find semantically similar text based on a query.
-A pretrained transformer model is loaded using SentenceTransformer(all-MiniLM-L6-v2). It is an efficient choice that generates 384-dimensional embeddings. 
-The model.encode() function takes a list of text chunks.
+2. Embeddings: SentenceTransformer("all-MiniLM-L6-v2").encode(chunks) → vectors.
 
-**3.Semantic Retrieval:**
-Finds the most relevant text chunks from a list based on semantic similarity to a given query using cosine similarity, saving tokens and improving accuracy.
+3. Retrieve: cosine similarity to get top-k chunks.
 
-**4. Chunks Re-ranking**
+4. Re-rank: using cross-encoder (cross-encoder/ms-marco-MiniLM-L-6-v2) for re-scores.
 
-<img width="2096" height="652" alt="image" src="https://github.com/user-attachments/assets/5e96be2b-e314-4449-8424-86367c19d1ad" />
+5. Prompt: build_prompt(context, query) adds rules/indtructions + top chunks.
 
-**4.Calling Datbricks LLAMA-4 Endpoint API to generate outputs:**
+6. Generate: call Databricks Llama endpoint with max_tokens limit.
 
-<img width="770" height="624" alt="Screenshot 2025-10-24 at 12 17 33" src="https://github.com/user-attachments/assets/82a6dd28-e614-428a-95ce-779080977638" />
+7. Log: latency, errors, rank metrics, token usage.
 
-This script interacts with a Databricks-hosted large language model (LLM) by sending a prompt and receiving a summarized response. The API URL is constructed dynamically using the model name to ensure the request reaches the correct endpoint.
-
-The max_tokens parameter is used to limit the length of the model's response, ensuring it remains concise and controlled. Finally, the requests.post() function is used to make the HTTP request, sending the payload and headers to the LLM endpoint and retrieving the generated output.
-
-**5.Prompt Engineering and Fine Tuning**
-
-<img width="784" height="637" alt="Screenshot 2025-10-24 at 12 18 52" src="https://github.com/user-attachments/assets/da7cca00-c37a-46e3-8dfb-39923c0558ec" />
-
-This function is designed to build a well-structured prompt that will be sent to a Large Language Model (LLM) for resume summarization.
-
-It takes two main inputs: Context, which consists of relevant resume chunks retrieved through semantic search, and query, which is the specific instruction or question for the model to answer (e.g., "Summarize this candidate’s experience").
-
-The goal is to format these inputs into a cohesive and clear prompt that guides the LLM to produce accurate, concise, and relevant summaries. The structured format helps ensure the model focuses only on the important information from the resume while following the desired task.
-
+   
 ---
 
 **Model Output**::
