@@ -60,7 +60,7 @@ Reduce time-to-screen by surfacing the most relevant candidates and summaries.
 --- 
 
 
-**Streamlit UI**
+**Streamlit UI Sample**
 
 <img width="930" height="602" alt="Screenshot 2025-11-02 at 11 20 31" src="https://github.com/user-attachments/assets/8d7cfd70-9b08-499f-8dfc-f6f2e01ae84b" />
 
