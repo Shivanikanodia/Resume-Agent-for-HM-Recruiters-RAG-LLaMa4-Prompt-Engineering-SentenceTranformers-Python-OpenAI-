@@ -66,25 +66,6 @@ Reduce time-to-screen by surfacing the most relevant candidates and summaries.
 
 ---
 
-project_root/
-│
-├── data/                 # Resume PDFs / Delta tables
-├── src/
-│   ├── read_chunk_resume.py
-│   ├── embed_generate.py
-│   ├── semantic_search.py
-│   ├── rerank.py
-│   ├── llama_api_call.py
-│   ├── prompt_builder.py
-│
-├── app.py                # Streamlit UI
-├── requirements.txt
-├── README.md
-└── results/
-    ├── example_summary.json
-    ├── metrics_report.csv
-
-
 **Instructions to Run:**
 
 **1. Backend (Databricks + Python)** Create a Databricks token and Llama endpoint (model serving).
