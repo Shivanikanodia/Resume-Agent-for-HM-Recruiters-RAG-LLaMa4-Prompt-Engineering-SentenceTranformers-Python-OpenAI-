@@ -55,8 +55,7 @@ Reduce time-to-screen by surfacing the most relevant candidates and summaries.
 
 **Model Output** and **Evaluation Metrics:**::
 
-<img width="970" height="387" alt="Screenshot 2025-11-04 at 16 36 55" src="https://github.com/user-attachments/assets/23cc5dd8-f92f-4a6d-bec4-705d23722995" />
-
+<img width="605" height="162" alt="Screenshot 2025-11-06 at 15 15 31" src="https://github.com/user-attachments/assets/09998a6a-57b8-479f-9bed-cdcc1aa86268" />
 
 ---
 
@@ -66,11 +65,11 @@ Reduce time-to-screen by surfacing the most relevant candidates and summaries.
 
 **Install deps:**
 
-pip install sentence-transformers torch einops requests faiss-cpu
+pip install sentence-transformers torch requests faiss-cpu
 
 **Configure environment variables:**
 
-DATABRICKS_HOST, DATABRICKS_TOKEN, LLM_ENDPOINT (your model serving URL), Load resumes from Unity Catalog Volumes / Delta, run embedding + index build, then start the API script that calls the Llama endpoint.
+DATABRICKS_HOST, DATABRICKS_TOKEN, LLM_ENDPOINT (your model serving URL), Load resumes (Change path your specified path location, run embedding + index build, then start the API script that calls the Llama endpoint.
 
 ---
 
