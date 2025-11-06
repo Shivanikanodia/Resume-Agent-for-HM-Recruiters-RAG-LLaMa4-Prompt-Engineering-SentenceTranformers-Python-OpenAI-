@@ -57,18 +57,12 @@ Reduce time-to-screen by surfacing the most relevant candidates and summaries.
 
 <img width="970" height="387" alt="Screenshot 2025-11-04 at 16 36 55" src="https://github.com/user-attachments/assets/23cc5dd8-f92f-4a6d-bec4-705d23722995" />
 
---- 
-
-
-**Streamlit UI Sample**
-
-<img width="930" height="602" alt="Screenshot 2025-11-02 at 11 20 31" src="https://github.com/user-attachments/assets/8d7cfd70-9b08-499f-8dfc-f6f2e01ae84b" />
 
 ---
 
 **Instructions to Run:**
 
-**1. Backend (Databricks + Python)** Create a Databricks token and Llama endpoint (model serving).
+**Backend (Databricks + Python)** Create a Databricks token and Llama endpoint (model serving).
 
 **Install deps:**
 
@@ -77,12 +71,6 @@ pip install sentence-transformers torch einops requests faiss-cpu
 **Configure environment variables:**
 
 DATABRICKS_HOST, DATABRICKS_TOKEN, LLM_ENDPOINT (your model serving URL), Load resumes from Unity Catalog Volumes / Delta, run embedding + index build, then start the API script that calls the Llama endpoint.
-
-**2. Frontend / Test App (Streamlit)**
-
-**Install deps:** pip install streamlit PyPDF2 sentence-transformers requests. (If you use Groq for a local test script, set GROQ_API_KEY.)
-
-**Run:** streamlit run app.py
 
 ---
 
