@@ -55,7 +55,9 @@ Reduce time-to-screen by surfacing the most relevant candidates and summaries.
 
 **Model Output** and **Evaluation Metrics:**::
 
-<img width="605" height="162" alt="Screenshot 2025-11-06 at 15 15 31" src="https://github.com/user-attachments/assets/09998a6a-57b8-479f-9bed-cdcc1aa86268" />
+<img width="852" height="130" alt="Screenshot 2025-11-06 at 16 00 45" src="https://github.com/user-attachments/assets/c6c54f71-4c18-4c74-9086-f6d29a68dccf" />
+
+<img width="985" height="289" alt="Screenshot 2025-11-06 at 16 00 39" src="https://github.com/user-attachments/assets/4ed11558-2f28-4749-ac75-071ddf59fe08" />
 
 ---
 
