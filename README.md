@@ -64,7 +64,9 @@ Reduce time-to-screen by surfacing the most relevant candidates and summaries.
 
 **Instructions to Run:**
 
-**Backend (Databricks + Python)** Create a Databricks token and Llama endpoint (model serving).
+**Backend (Databricks + Python)** 
+
+Create a Databricks token and Llama endpoint (model serving).
 
 **Install deps:**
 
@@ -72,7 +74,9 @@ pip install sentence-transformers torch requests faiss-cpu
 
 **Configure environment variables:**
 
-DATABRICKS_HOST, DATABRICKS_TOKEN, LLM_ENDPOINT (your model serving URL), Load resumes (Change path your specified path location, run embedding + index build, then start the API script that calls the Llama endpoint.
+DATABRICKS_HOST, DATABRICKS_TOKEN, LLM_ENDPOINT (your model serving URL)
+
+Load resumes, Change path your specified path location, run embedding + index build, then start the API script that calls the Llama endpoint
 
 ---
 
