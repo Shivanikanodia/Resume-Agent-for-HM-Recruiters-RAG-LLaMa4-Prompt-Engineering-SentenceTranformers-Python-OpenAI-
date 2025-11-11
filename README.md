@@ -60,6 +60,8 @@ Reduce time-to-screen by surfacing the most relevant candidates and summaries.
 
 <img width="985" height="289" alt="Screenshot 2025-11-06 at 16 00 39" src="https://github.com/user-attachments/assets/4ed11558-2f28-4749-ac75-071ddf59fe08" />
 
+The Output and revelancy can be improved using meta-data filtering, BM25 and Indexing. (**Working on it**)
+
 ---
 
 **Instructions to Run:**
